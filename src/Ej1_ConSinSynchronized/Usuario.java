@@ -14,5 +14,6 @@ public class Usuario extends Thread{
         for(int i = 0; i < 1000;i++){
             contador.incrementar();
         }
+
     }
 }
