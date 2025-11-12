@@ -17,23 +17,11 @@ public class Lector extends Thread{
     @Override
     public void run() {
         super.run();
-<<<<<<< Updated upstream
         while (seguir){
             palabraClave = sc.nextLine();
             if(palabraClave.equals("parar")){
                 seguir=false;
-=======
-        palabraClave=sc.nextLine();
-        if(palabraClave.equals("parar")){
-            System.out.println("hola");
-            try {
-                r.join();
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
->>>>>>> Stashed changes
             }
         }
-
     }
-
 }
