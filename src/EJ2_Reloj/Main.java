@@ -1,7 +1,7 @@
 package EJ2_Reloj;
 
 public class Main {
-    public static void main(String[] args){
+    public static void main(String[] args) throws InterruptedException {
         Hora h = new Hora(0,0,0);
 
         Reloj r = new Reloj(h);
@@ -11,7 +11,6 @@ public class Main {
         l.start();
 
 
-        System.out.println();
 
     }
 }
