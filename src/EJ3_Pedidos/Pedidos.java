@@ -11,8 +11,8 @@ public class Pedidos extends Thread{
     @Override
     public void run() {
         super.run();
-        for(int i =0; i<; i++){
-            pedidos[i] = "Pedido" + (i + 1);
-        }
+//        for(int i =0; i<; i++){
+//            pedidos[i] = "Pedido" + (i + 1);
+//        }
     }
 }

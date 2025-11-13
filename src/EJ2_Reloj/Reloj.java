@@ -2,6 +2,7 @@ package EJ2_Reloj;
 
 public class Reloj extends Thread{
     Hora hora;
+    public static boolean seguir=true;
 
     public Reloj(Hora hora) {
         this.hora = hora;
@@ -11,23 +12,15 @@ public class Reloj extends Thread{
     public void run() {
         super.run();
 
-        if(estado(true)){
-            for(long i =0; i<10000; i++){
+        while(seguir){
+            try {
                 hora.incrementar();
-                try {
-                    sleep(1000);
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
                 System.out.println(hora.toString());
+                sleep(1000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
             }
         }
         
     }
-
-    public boolean estado(boolean estado){
-        estado = true;
-        return estado;
-    }
-
 }

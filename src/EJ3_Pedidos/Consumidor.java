@@ -1,6 +1,6 @@
 package EJ3_Pedidos;
 
-import static EJ3_Pedidos.Pedidos.pedidos;
+//import static EJ3_Pedidos.Pedidos.pedidos;
 
 public class Consumidor extends Thread{
 
@@ -9,8 +9,8 @@ public class Consumidor extends Thread{
     @Override
     public void run() {
         super.run();
-        for(String p : pedidos){
-
-        }
+//        for(String p : pedidos){
+//
+//        }
     }
 }
