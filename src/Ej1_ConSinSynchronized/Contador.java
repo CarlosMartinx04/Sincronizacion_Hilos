@@ -10,7 +10,9 @@ public class Contador {
     }
 
     //Lo mismo hacemos para que no cambien los resultados cada hilo
-    public synchronized int getValor() { return valor; }
+    public synchronized int getValor() {
+        return valor;
+    }
 
 }
 
