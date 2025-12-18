@@ -2,11 +2,8 @@ package Ej13_RuedaFina;
 
 public class Mecanico extends Thread{
 
-    Taller taller;
-
-    public Mecanico(String name, Taller taller) {
+    public Mecanico(String name) {
         super(name);
-        this.taller = taller;
     }
 
     public void reparando() throws InterruptedException {
@@ -15,4 +12,20 @@ public class Mecanico extends Thread{
         System.out.println("El coche ha sido reparado");
     }
 
+    @Override
+    public void run(){
+        try {
+            while (true){
+                for (int i = 0; i < Taller.elevadoras.size(); i++){
+                    Elevadora elevadora = Taller.elevadoras.get(i);
+                    if (!elevadora.estaLibre()){
+                        elevadora.repararCoche(this);
+                    }
+                }
+            }
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        } finally {
+        }
+    }
 }

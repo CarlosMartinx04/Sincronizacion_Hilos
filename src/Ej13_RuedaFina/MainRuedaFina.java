@@ -1,15 +1,21 @@
 package Ej13_RuedaFina;
 
+import static java.lang.Thread.sleep;
+
 public class MainRuedaFina {
 
     public static void main(String[] args){
         Taller taller = new Taller();
-        Coche c = new Coche();
-        Mecanico m = new Mecanico("asda", taller);
-        c.start();
-        m.start();
-        taller.start();
+        //Nestor me ayudo a hacer este ejericio
 
+        while(true){
+            try {
+                taller.llegaCoche();
+                sleep(3000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 
 }

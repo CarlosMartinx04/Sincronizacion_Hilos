@@ -1,9 +1,10 @@
 package Ej3_ColaPedidos;
-public class Productor extends Thread{
+
+public class Consumidor extends Thread{
 
     ColaPedidos colaPedidos;
 
-    public Productor(ColaPedidos colaPedidos) {
+    public Consumidor(ColaPedidos colaPedidos) {
         this.colaPedidos = colaPedidos;
     }
 
@@ -12,9 +13,8 @@ public class Productor extends Thread{
         super.run();
         while(true){
             try {
-                colaPedidos.hacerPedido();
-
-                sleep((int)(Math.random()*2000)+1000);
+                colaPedidos.consumePedido();
+                sleep((int)(Math.random()*6000)+1000);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
