@@ -11,14 +11,14 @@ public class Pasajero extends Thread{
 
     @Override
     public void run() {
-        super.run();
         try {
-            tren.intentaSubir();
-            tren.seBaja();
-
+            tren.subePasajero(getName());
+            if(tren.enMarcha){
+                sleep((int)(Math.random()*5000)-1000);
+            }
+            tren.bajaPasajero(getName());
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-
     }
 }

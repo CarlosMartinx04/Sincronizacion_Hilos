@@ -1,51 +1,47 @@
 package Ej4_EstacionTren;
 
-import java.sql.SQLOutput;
-import java.util.ArrayList;
+public class Tren {
 
-import static java.lang.Thread.currentThread;
-import static java.lang.Thread.sleep;
+    int pasajeros = 0;
+    boolean enMarcha=false;
+    boolean enDestino=true;
 
-public class Tren  {
-
-    boolean enMarcha = false;
-    ArrayList<String> pasajeros = new ArrayList<>(0);
-
-    public synchronized void intentaSubir() throws InterruptedException {
-        System.out.println("Ha llegado el pasajero "+ currentThread().getName());
-        while(pasajeros.size()==4 || enMarcha){
-            System.out.println("El pasajero "+ currentThread().getName()+" esta esperando a que llegue el tren.");
+    public synchronized void subePasajero(String name) throws InterruptedException {
+        while (enMarcha||pasajeros==4){
+            System.out.println(name+" esperando.");
             wait();
         }
-        pasajeros.add(currentThread().getName());
-        System.out.println("El pasajero "+currentThread().getName()+" se ha subido al tren.("+pasajeros.size()+")");
-        if (pasajeros.size()!=4){
-            System.out.println("El tren esta esperando a que se llene.");
-            wait();
-        }
-        else {
-            notifyAll();
+        pasajeros++;
+        System.out.println(name+" ha subido al tren("+pasajeros+")");
+
+        if(pasajeros==4 && enDestino){
             saleTren();
         }
-
+        wait();
     }
 
     public synchronized void saleTren() throws InterruptedException {
-        System.out.println("El tren ha salido");
-        enMarcha = true;
-        sleep(2000);
-//        enMarcha=false;
-//        System.out.println("El tren ha llegado");
+        System.out.println("El tren sale de la estacion");
+        enMarcha=true;
+        enDestino=false;
+        enMarcha=false;
+        System.out.println("El tren llega  a la estacion");
+        notifyAll();
+
     }
 
-    public synchronized void seBaja(){
-        pasajeros.remove(currentThread().getName());
-        if(pasajeros.isEmpty()){
-            enMarcha=false;
-            notifyAll();
-            System.out.println("El tren se ha vaciado");
+    public synchronized void bajaPasajero(String name) throws InterruptedException {
+        while (enMarcha&&!enDestino){
+            wait();
         }
-    }
 
+        pasajeros--;
+        System.out.println(name+" ha bajado del tren.");
+
+        if(pasajeros==0){
+            enDestino=true;
+        }
+        notifyAll();
+    }
 
 }
